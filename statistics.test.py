@@ -1,3 +1,4 @@
+from cmath import isnan
 import unittest
 import statistics
 
@@ -15,12 +16,20 @@ class StatsTest(unittest.TestCase):
     # nan (not-a-number), as defined in the math package
     # Design the assert here.
     # Use nan and isnan in https://docs.python.org/3/library/math.html
+    self.assertTrue(isnan(computedStats["avg"]))
+    self.assertTrue(isnan(computedStats["max"]))
+    self.assertTrue(isnan(computedStats["min"]))
+
+  def test_invalid_arg_returns_None(self):
+    # tests if calculateStats returns None on receiving non-array argument for 'numbers'
+    computedStats = statistics.calculateStats("a string")
+    self.assertTrue(statistics.calculateStats, None)
 
   def test_raise_alerts_when_max_above_threshold(self):
-    emailAlert = EmailAlert()
-    ledAlert = LEDAlert()
+    emailAlert = statistics.EmailAlert() # added statistics module identifier for class instantiation
+    ledAlert = statistics.LEDAlert()
     maxThreshold = 10.5
-    statsAlerter = StatsAlerter(maxThreshold, [emailAlert, ledAlert])
+    statsAlerter = statistics.StatsAlerter(maxThreshold, [emailAlert, ledAlert])
     statsAlerter.checkAndAlert([22.6, 12.5, 3.7])
     self.assertTrue(emailAlert.emailSent)
     self.assertTrue(ledAlert.ledGlows)
