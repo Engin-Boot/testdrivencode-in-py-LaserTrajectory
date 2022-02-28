@@ -9,20 +9,22 @@ def calculateStats(numbers):
 
     if len(numbers) == 0:
 
-      vals = [math.nan for i in keys]
+      vals = [math.nan for i in keys] # is_nan test
       # print(vals)
 
     else:
 
-      vals = [ round((sum(numbers) / len(numbers)), 3), max(numbers), min(numbers) ] 
+      vals = [ round((sum(numbers) / len(numbers)), 3), max(numbers), min(numbers) ] # min_max_report test 
   
   else:
 
-    return
+    return # invalid_arg test
 
   stats = dict(zip(keys, vals))
 
   return stats
+
+# below: alerts tests
 
 class EmailAlert:
 
@@ -50,8 +52,4 @@ class StatsAlerter:
       self.alertArrs[0].emailSent = True
       self.alertArrs[1].ledGlows = True
 
-# print(calculateStats([]))
-# print(calculateStats(["a", "b", "c", "d"])) # type error: unsupported operand types. test case?
-# print(calculateStats("a string"))
-# print(math.nan)
 
