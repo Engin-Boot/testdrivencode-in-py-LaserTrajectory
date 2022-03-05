@@ -1,6 +1,7 @@
 from cmath import isnan
 import unittest
 import statistics
+import alerts
 
 class StatsTest(unittest.TestCase):
   def test_report_min_max_avg(self):
@@ -26,10 +27,10 @@ class StatsTest(unittest.TestCase):
     self.assertTrue(statistics.calculateStats, None)
 
   def test_raise_alerts_when_max_above_threshold(self):
-    emailAlert = statistics.EmailAlert() # added statistics module identifier for class instantiation
-    ledAlert = statistics.LEDAlert()
+    emailAlert = alerts.EmailAlert() # added statistics module identifier for class instantiation
+    ledAlert = alerts.LEDAlert()
     maxThreshold = 10.5
-    statsAlerter = statistics.StatsAlerter(maxThreshold, [emailAlert, ledAlert])
+    statsAlerter = alerts.StatsAlerter(maxThreshold, [emailAlert, ledAlert])
     statsAlerter.checkAndAlert([22.6, 12.5, 3.7])
     self.assertTrue(emailAlert.emailSent)
     self.assertTrue(ledAlert.ledGlows)
