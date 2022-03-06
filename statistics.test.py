@@ -24,7 +24,7 @@ class StatsTest(unittest.TestCase):
   def test_invalid_arg_returns_None(self):
     # tests if calculateStats returns None on receiving non-array argument for 'numbers'
     computedStats = statistics.calculateStats("a string")
-    self.assertTrue(statistics.calculateStats, None)
+    self.assertTrue((computedStats == None), None)
 
   def test_raise_alerts_when_max_above_threshold(self):
     emailAlert = alerts.EmailAlert() # added statistics module identifier for class instantiation
