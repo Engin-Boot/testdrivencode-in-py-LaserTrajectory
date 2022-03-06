@@ -1,22 +1,15 @@
 import math
+from turtle import st
 
 def calculateStats(numbers):
 
-  stats = dict.fromkeys(["avg", "max", "min"])
+  stats = dict(zip(["avg", "max", "min"], [math.nan, math.nan, math.nan]))
 
+  if type(numbers) != list: 
 
-  if type(numbers) != list:
-
-    return None # invalid_arg test
-
-
-  if len(numbers) == 0:
-
-    for key in stats.keys():
-      
-      stats[key] =  math.nan # is_nan test
-
-  else:
+    return None
+    
+  if len(numbers) != 0:
 
     stats["avg"] = round((sum(numbers) / len(numbers)), 3)
     stats["max"] = max(numbers)
